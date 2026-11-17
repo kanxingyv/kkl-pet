@@ -25,6 +25,21 @@ const TARGET_H = 258;
 const KEY_LO = 42;
 const KEY_HI = 125;
 
+/** 每个动作的播放帧率。呼吸类慢、动作类快，4 帧循环下这个数很影响观感。 */
+const FPS_BY_ACTION = {
+  idle: 6,
+  walk: 8,
+  climb: 10,
+  sit: 6,
+  sleep: 4,
+  wave: 12,
+  fall: 14,
+  peek: 8,
+  jump: 16,
+  land: 16,
+  drag: 10,
+};
+
 function arg(name, fallback) {
   const i = process.argv.indexOf(`--${name}`);
   return i >= 0 ? process.argv[i + 1] : fallback;
@@ -184,7 +199,8 @@ export async function run() {
   } catch {
     /* 首次运行 */
   }
-  motions.motions[action] = { frames: frames.length, fps: frames.length <= 4 ? 8 : 10 };
+  const fps = FPS_BY_ACTION[action] ?? (frames.length <= 4 ? 8 : 10);
+  motions.motions[action] = { frames: frames.length, fps };
   await writeFile(motionsPath, JSON.stringify(motions, null, 2));
 
   console.log(`  → src/normalized/${action}/  ${frames.length} 帧 @${motions.motions[action].fps}fps`);
