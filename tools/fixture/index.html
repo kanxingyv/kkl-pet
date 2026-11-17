@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>宠物测试台 · CSP fixture</title>
+    <link rel="stylesheet" href="/fixture.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <strong>kkl-pet fixture</strong>
+      </div>
+      <nav class="links">
+        <a href="#">概览</a>
+        <a href="#">档案</a>
+        <a href="#">设置</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <h1>宠物测试台</h1>
+      <p class="lead">
+        这个页面带的是与 kkl.ltd 完全相同的 CSP：
+        <code>style-src 'self'; script-src 'self'; connect-src 'none'</code>。
+        如果宠物能在这里正常出现，站内版就能上线。
+      </p>
+
+      <div class="row">
+        <button class="btn" type="button">主要按钮</button>
+        <button class="btn ghost" type="button">次要按钮</button>
+      </div>
+
+      <div class="row">
+        <input class="field" type="text" placeholder="这里是一个输入框" />
+        <input class="field" type="search" placeholder="搜索…" />
+      </div>
+
+      <section class="card">
+        <h2>可站立的卡片</h2>
+        <p>宠物应该能走到这张卡片的顶边上。</p>
+      </section>
+
+      <section class="card tall">
+        <h2>高卡片</h2>
+        <p>用来测试从地面爬到高处。</p>
+      </section>
+
+      <div class="spacer"></div>
+    </main>
+
+    <script src="/stress.js" defer></script>
+    <script src="/pet.js" defer></script>
+  </body>
+</html>

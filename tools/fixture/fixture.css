@@ -1,0 +1,165 @@
+:root {
+  --ink: #38271f;
+  --ink-2: #6b5449;
+  --paper: #faf6ef;
+  --line: rgba(139, 74, 58, 0.24);
+  --accent: #c23b45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.7 -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  border-bottom: 1px dashed var(--line);
+  background: rgba(255, 253, 249, 0.8);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: 0.04em;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.links {
+  display: flex;
+  gap: 26px;
+}
+
+.links a {
+  color: var(--ink-2);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 56px 40px 120px;
+}
+
+h1 {
+  font-size: 44px;
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+
+.lead {
+  color: var(--ink-2);
+  max-width: 620px;
+}
+
+.lead code {
+  background: rgba(194, 59, 69, 0.08);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  margin: 28px 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: 1.6px solid transparent;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn.ghost {
+  background: transparent;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.field {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.6px solid var(--line);
+  background: #fff;
+  font-size: 14px;
+  min-width: 220px;
+}
+
+.card {
+  border: 1.6px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  padding: 26px 28px;
+  margin: 22px 0;
+  box-shadow: 0 18px 36px -28px rgba(86, 52, 40, 0.4);
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.card p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+.card.tall {
+  min-height: 220px;
+}
+
+.spacer {
+  height: 420px;
+}
+
+.stress-wrap {
+  margin: 32px 0;
+  border: 1.6px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px 18px 18px;
+}
+
+.stress-title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: var(--ink-2);
+}
+
+.stress-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  max-height: 420px;
+  display: block;
+  overflow: auto;
+}
+
+.stress-table td {
+  border: 1px solid rgba(139, 74, 58, 0.12);
+  padding: 4px 8px;
+  white-space: nowrap;
+}

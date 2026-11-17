@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "id": "kkl-whitebird",
+  "name": "丁小红白",
+  "version": "0.1.0",
+  "author": "kkl",
+  "license": "CC-BY-NC-4.0",
+  "homepage": "https://kkl.ltd",
+  "canvas": {
+    "width": 324,
+    "height": 324,
+    "pixelRatio": 2
+  },
+  "anchor": {
+    "x": 162,
+    "y": 300
+  },
+  "body": {
+    "width": 92,
+    "height": 132,
+    "hitPadding": 6
+  },
+  "display": {
+    "height": 162,
+    "minScale": 0.7,
+    "maxScale": 1.4
+  },
+  "facing": {
+    "default": "right",
+    "flipAxis": "x",
+    "deadZonePx": 6
+  },
+  "palette": {
+    "outline": "#a9634f",
+    "body": "#ffffff",
+    "accent": "#c23b45"
+  },
+  "sprite": {
+    "layout": "strip-h",
+    "format": "webp"
+  },
+  "clips": {
+    "climb": {
+      "sheet": "climb.webp",
+      "frames": 8,
+      "fps": 13,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "idle": {
+      "sheet": "idle.webp",
+      "frames": 10,
+      "fps": 12,
+      "loop": true,
+      "view": "front",
+      "mirror": false
+    },
+    "walk": {
+      "sheet": "walk.webp",
+      "frames": 8,
+      "fps": 12,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "fall": {
+      "sheet": "fall.webp",
+      "frames": 6,
+      "fps": 14,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "peek": {
+      "sheet": "peek.webp",
+      "frames": 6,
+      "fps": 8,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "sit": {
+      "sheet": "sit.webp",
+      "frames": 6,
+      "fps": 8,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "sleep": {
+      "sheet": "sleep.webp",
+      "frames": 6,
+      "fps": 6,
+      "loop": true,
+      "view": "front",
+      "mirror": false
+    },
+    "wave": {
+      "sheet": "wave.webp",
+      "frames": 8,
+      "fps": 12,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "jump": {
+      "sheet": "jump.webp",
+      "frames": 8,
+      "fps": 16,
+      "loop": true,
+      "view": "front",
+      "mirror": true
+    },
+    "drag": {
+      "sheet": "drag.webp",
+      "frames": 4,
+      "fps": 10,
+      "loop": true,
+      "view": "front",
+      "mirror": false
+    },
+    "land": {
+      "sheet": "land.webp",
+      "frames": 4,
+      "fps": 16,
+      "loop": true,
+      "view": "front",
+      "mirror": false
+    }
+  },
+  "behaviors": {
+    "walkSpeed": 85,
+    "climbSpeed": 90,
+    "gravity": 2600,
+    "terminalVelocity": 1400,
+    "brainTickMs": [
+      900,
+      1400
+    ],
+    "minDwellMs": 1200,
+    "sameActionCooldownMs": 8000,
+    "moveCooldownMs": 1500,
+    "minTravelPx": 120,
+    "idleToSleepMs": 120000,
+    "interruptByUserMs": 1500,
+    "weights": {
+      "wander": 40,
+      "idle": 30,
+      "sit": 12,
+      "peek": 10,
+      "wave": 5,
+      "jump": 3,
+      "sleep": 2
+    }
+  },
+  "fx": {
+    "dustColor": "#d8c3b4",
+    "landSquash": [
+      0.72,
+      1.06,
+      1
+    ],
+    "shadowColor": "rgba(56,39,31,.22)"
+  },
+  "content": {
+    "credit": "角色形象：丁小红白"
+  }
+}

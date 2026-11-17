@@ -1,0 +1,67 @@
+{
+  "source": "src/raw/base.png",
+  "width": 600,
+  "height": 600,
+  "bbox": {
+    "left": 129,
+    "top": 111,
+    "width": 358,
+    "height": 408
+  },
+  "anchor": {
+    "x": 314.7,
+    "y": 519
+  },
+  "coverage": 0.3069,
+  "palette": [
+    {
+      "hex": "#ffffff",
+      "ratio": 0.7217
+    },
+    {
+      "hex": "#ff5566",
+      "ratio": 0.0803
+    },
+    {
+      "hex": "#ffee66",
+      "ratio": 0.0148
+    },
+    {
+      "hex": "#885544",
+      "ratio": 0.012
+    },
+    {
+      "hex": "#ffeeee",
+      "ratio": 0.009
+    },
+    {
+      "hex": "#883311",
+      "ratio": 0.0086
+    },
+    {
+      "hex": "#eedddd",
+      "ratio": 0.0085
+    },
+    {
+      "hex": "#884422",
+      "ratio": 0.0075
+    },
+    {
+      "hex": "#ff4455",
+      "ratio": 0.0065
+    },
+    {
+      "hex": "#995533",
+      "ratio": 0.0043
+    },
+    {
+      "hex": "#884444",
+      "ratio": 0.0041
+    },
+    {
+      "hex": "#994422",
+      "ratio": 0.0039
+    }
+  ],
+  "outline": "#885544"
+}

@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "skin": "kkl-whitebird",
+  "base": {
+    "image": "src/raw/base.png",
+    "style": "flat vector cartoon mascot, thick warm-brown outline in #a9634f, pure white chubby round body, tiny yellow beak, pink blush cheeks, red swim trunks, closed happy eyes, absolutely no shading, no gradient, no drop shadow, transparent background, full body centered",
+    "inputFidelity": "high",
+    "canvasHint": "1024x1024"
+  },
+  "actions": [
+    {
+      "id": "anchor-side",
+      "kind": "anchor",
+      "view": "side",
+      "label": "侧身站姿锚点",
+      "gen": [
+        {
+          "key": "stance",
+          "prompt": "the same character shown in perfect side profile facing right, standing upright, both arms hanging at sides, feet together flat on the ground, full body visible head to feet"
+        }
+      ]
+    },
+    {
+      "id": "anchor-back",
+      "kind": "anchor",
+      "view": "back",
+      "label": "背面站姿锚点",
+      "gen": [
+        {
+          "key": "stance",
+          "prompt": "the same character seen from directly behind, back view, standing upright, both arms at sides, red swim trunks clearly visible, no face and no beak visible"
+        }
+      ]
+    },
+    {
+      "id": "walk",
+      "frames": 8,
+      "fps": 12,
+      "loop": true,
+      "view": "side",
+      "mirror": true,
+      "gen": [
+        {
+          "key": "contact",
+          "prompt": "the same character in side profile facing right, caught mid-stride, front leg forward and back leg extended behind, both feet touching the ground, arms swinging opposite to the legs, body leaning slightly forward"
+        },
+        {
+          "key": "passing",
+          "prompt": "the same character in side profile facing right, legs together passing directly under the body, whole body raised a little higher than a normal stance, arms hanging neutral at the sides"
+        }
+      ],
+      "derive": [
+        { "frame": 0, "from": "contact", "scaleY": 0.99, "dy": 0 },
+        { "frame": 1, "from": "passing", "scaleY": 1.03, "dy": -3 },
+        { "frame": 2, "from": "contact", "scaleY": 1.0, "dy": -1 },
+        { "frame": 3, "from": "passing", "scaleY": 1.02, "dy": -2 },
+        { "frame": 4, "from": "contact", "scaleY": 0.985, "dy": 1 },
+        { "frame": 5, "from": "passing", "scaleY": 1.03, "dy": -3 },
+        { "frame": 6, "from": "contact", "scaleY": 1.0, "dy": 0 },
+        { "frame": 7, "from": "passing", "scaleY": 1.02, "dy": -2 }
+      ]
+    },
+    {
+      "id": "climb",
+      "frames": 8,
+      "fps": 10,
+      "loop": true,
+      "view": "side",
+      "mirror": true,
+      "gen": [
+        {
+          "key": "hug",
+          "prompt": "the same character clinging to an invisible vertical wall on its right side, both arms raised up and gripping, both feet pressed flat against the wall, body facing the wall, seen from the side"
+        },
+        {
+          "key": "reach",
+          "prompt": "the same character climbing up an invisible vertical wall on its right side, one arm stretched high overhead reaching for the next grip, the opposite leg lifted high with the foot off the wall, seen from the side"
+        }
+      ],
+      "derive": [
+        { "frame": 0, "from": "hug", "scaleY": 1.0, "dy": 0 },
+        { "frame": 1, "from": "hug", "scaleY": 1.01, "dy": -2 },
+        { "frame": 2, "from": "reach", "scaleY": 1.02, "dy": -5 },
+        { "frame": 3, "from": "reach", "scaleY": 1.01, "dy": -3 },
+        { "frame": 4, "from": "hug", "scaleY": 1.0, "dy": 0 },
+        { "frame": 5, "from": "hug", "scaleY": 1.01, "dy": -2 },
+        { "frame": 6, "from": "reach", "scaleY": 1.02, "dy": -5 },
+        { "frame": 7, "from": "reach", "scaleY": 1.01, "dy": -3 }
+      ]
+    },
+    {
+      "id": "fall",
+      "frames": 6,
+      "fps": 14,
+      "loop": true,
+      "view": "side",
+      "mirror": true,
+      "gen": [
+        {
+          "key": "spread",
+          "prompt": "the same character falling down through the air, arms flailing out to both sides, legs dangling loosely apart, mouth open in surprise, body tilted slightly backward, seen from the side"
+        }
+      ],
+      "derive": [
+        { "frame": 0, "from": "spread", "scaleY": 1.02, "dy": 0, "rotate": -3 },
+        { "frame": 1, "from": "spread", "scaleY": 1.0, "dy": -2, "rotate": 0 },
+        { "frame": 2, "from": "spread", "scaleY": 1.03, "dy": -1, "rotate": 3 },
+        { "frame": 3, "from": "spread", "scaleY": 1.01, "dy": 1, "rotate": 2 },
+        { "frame": 4, "from": "spread", "scaleY": 1.0, "dy": 0, "rotate": -2 },
+        { "frame": 5, "from": "spread", "scaleY": 1.02, "dy": -2, "rotate": -3 }
+      ]
+    },
+    {
+      "id": "peek",
+      "frames": 6,
+      "fps": 8,
+      "loop": true,
+      "view": "front",
+      "mirror": true,
+      "gen": [
+        {
+          "key": "lean",
+          "prompt": "the same character leaning forward and looking down over an edge, body bent forward, head tilted down as if peering into something below, arms hanging forward, seen from the front"
+        }
+      ],
+      "derive": [
+        { "frame": 0, "from": "lean", "scaleY": 1.0, "dy": 0, "rotate": 0 },
+        { "frame": 1, "from": "lean", "scaleY": 1.01, "dy": -1, "rotate": 1 },
+        { "frame": 2, "from": "lean", "scaleY": 1.02, "dy": -2, "rotate": 2 },
+        { "frame": 3, "from": "lean", "scaleY": 1.01, "dy": -1, "rotate": 1 },
+        { "frame": 4, "from": "lean", "scaleY": 1.0, "dy": 0, "rotate": 0 },
+        { "frame": 5, "from": "lean", "scaleY": 1.0, "dy": 0, "rotate": -1 }
+      ]
+    }
+  ]
+}

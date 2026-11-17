@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "KKL 桌面宠物 · 丁小红白",
+  "version": "0.1.0",
+  "description": "丁小红白会在网页上走来走去、爬上爬下，可以拖拽，也可以关掉。不采集任何页面数据。",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["pet.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["skins/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

@@ -1,0 +1,199 @@
+/* 宠物全部样式。构建期被 esbuild 内联成字符串，
+   运行时通过 constructable stylesheet 注入 shadow root——
+   不产生 <style> 元素，因此不受宿主页 `style-src` 约束。 */
+
+:host {
+  all: initial;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 2147483000;
+  pointer-events: none;
+  font: initial;
+}
+
+.pet-root {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 180ms ease;
+}
+
+.pet-root.is-hidden {
+  opacity: 0;
+}
+
+/* 翻转层与挤压层都绕 (0,0) 变换——(0,0) 就是脚底锚点，
+   所以镜像翻转与落地压扁都不会让脚移动。 */
+.pet-flip,
+.pet-squash {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  transform-origin: 0 0;
+}
+
+.pet-sprite {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.pet-sprite.is-dragging {
+  cursor: grabbing;
+}
+
+.pet-shadow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 11px;
+  margin-left: -22px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: var(--pet-shadow-color, rgba(56, 39, 31, 0.22));
+  filter: blur(2.5px);
+  opacity: 0.28;
+  transform-origin: 50% 50%;
+}
+
+.pet-fx {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.pet-dust {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--pet-dust-color, #d8c3b4);
+  opacity: 0;
+}
+
+.pet-fx.is-dust .pet-dust {
+  animation: pet-dust 420ms ease-out forwards;
+}
+
+.pet-fx.is-dust .pet-dust:nth-child(2) {
+  animation-delay: 40ms;
+  --pet-dust-dx: -14px;
+}
+
+.pet-fx.is-dust .pet-dust:nth-child(3) {
+  animation-delay: 80ms;
+  --pet-dust-dx: 14px;
+}
+
+@keyframes pet-dust {
+  0% {
+    opacity: 0.7;
+    transform: translate(0, 0) scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--pet-dust-dx, 0px), -9px) scale(1.6);
+  }
+}
+
+/* 调试叠层：只在 ?pet-debug 下显示。画出所有可站立表面、端口与当前路径。 */
+.pet-debug {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  display: none;
+  pointer-events: none;
+}
+
+.pet-debug.is-on {
+  display: block;
+}
+
+.pet-debug-surface {
+  position: absolute;
+  border: 1px solid rgba(35, 120, 220, 0.85);
+  background: rgba(35, 120, 220, 0.07);
+  box-sizing: border-box;
+}
+
+.pet-debug-surface.is-wall {
+  border-color: rgba(30, 160, 90, 0.85);
+  background: rgba(30, 160, 90, 0.07);
+}
+
+.pet-debug-surface.is-floor {
+  border-color: rgba(220, 120, 30, 0.85);
+  background: rgba(220, 120, 30, 0.07);
+}
+
+.pet-debug-surface.is-input {
+  border-color: rgba(180, 40, 160, 0.9);
+  background: rgba(180, 40, 160, 0.09);
+}
+
+.pet-debug-port {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: #1e78dc;
+  box-shadow: 0 0 0 1px #fff;
+}
+
+/* SVG 用什么尺寸就用多大：0×0 + overflow:visible 在 Chrome 里对 SVG 根元素不可靠，
+   直接铺满视口，坐标即视口坐标。 */
+.pet-debug-path {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.pet-debug-leg {
+  stroke: #d94a3d;
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 6 4;
+}
+
+.pet-debug-label {
+  position: absolute;
+  font: 10px/1.2 ui-monospace, monospace;
+  color: #1e78dc;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1px 3px;
+  white-space: nowrap;
+  transform: translateY(-100%);
+}

@@ -1,0 +1,20 @@
+# 依赖
+node_modules/
+
+# 构建产物（npm run build 可重建）
+dist/
+
+# 开发期产物：截图、对比图、抽帧
+tools/out/
+*.log
+
+# 素材中间产物
+# normalized 与 gen 都能由 petkit 从 src/raw/base.png 重新生成；
+# out/*.webp 是最终素材，需要版本化，不在此列。
+skins/*/src/normalized/
+skins/*/src/gen/
+skins/*/out/_contact/
+
+# 系统文件
+.DS_Store
+Thumbs.db
