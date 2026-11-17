@@ -29,7 +29,9 @@ export const STATE_CLIP: Record<StateName, ClipId | null> = {
   peek: "peek",
   wave: "wave",
   jump: "jump",
-  drag: "drag",
+  // 被拎起来时角色是悬空的，用 fall 的四肢张开比 drag 的竖向拉长更像被抓住。
+  // drag.webp 保留着，以后重画了可以换回来。
+  drag: "fall",
 };
 
 /**

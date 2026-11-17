@@ -59,6 +59,8 @@ export class Pet {
   #clipUrls = new Map<ClipId, string>();
   #stateUntil = 0;
   #dragging = false;
+  /** pointermove 只写这里，真正的 DOM 写入放到 rAF，避免高频事件把合成器拖住 */
+  #dragTarget: { x: number; y: number } | null = null;
   #interactive: boolean;
 
   #raf = 0;
@@ -124,7 +126,9 @@ export class Pet {
     this.#drag = new DragController(
       {
         onStart: () => this.#beginDrag(),
-        onMove: (x, y) => this.#moveDrag(x, y),
+        onMove: (x, y) => {
+          this.#dragTarget = { x, y };
+        },
         onEnd: (x, y, vx, vy) => this.#endDrag(x, y, vx, vy),
       },
       () => ({ x: this.#x, y: this.#y })
@@ -374,6 +378,7 @@ export class Pet {
 
   #beginDrag(): void {
     this.#dragging = true;
+    this.#dragTarget = null;
     this.#runner.stop();
     this.#stateUntil = 0;
     this.#renderer.setDragging(true);
@@ -381,12 +386,6 @@ export class Pet {
     this.#machine.force("drag");
     this.#brain.noteUserInput();
     this.#resolveWalk(false);
-  }
-
-  #moveDrag(x: number, y: number): void {
-    this.#x = x;
-    this.#y = y;
-    this.#renderer.setPosition(x, y);
   }
 
   #endDrag(x: number, y: number, vx: number, vy: number): void {
@@ -571,6 +570,15 @@ export class Pet {
     this.#last = now;
 
     if (this.#dragging) {
+      // 每帧只消费一次最新坐标：中间那些 pointermove 直接丢弃，
+      // 视觉上完全跟手，但不会因为写入频率超过刷新率而抖
+      const target = this.#dragTarget;
+      if (target) {
+        this.#dragTarget = null;
+        this.#x = target.x;
+        this.#y = target.y;
+        this.#renderer.setPosition(target.x, target.y);
+      }
       this.#animator.update(dt);
       return;
     }
