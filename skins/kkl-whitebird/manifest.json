@@ -58,8 +58,8 @@
     },
     "walk": {
       "sheet": "walk.webp",
-      "frames": 8,
-      "fps": 12,
+      "frames": 4,
+      "fps": 8,
       "loop": true,
       "view": "front",
       "mirror": true
