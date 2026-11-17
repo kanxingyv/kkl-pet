@@ -86,5 +86,12 @@ CSS 在构建期内联成字符串，运行时通过 `new CSSStyleSheet()` + `ad
 
 ## 文档
 
+- `docs/素材规格书.md` —— **要做分帧动画素材时的完整规格与 prompt 模板**
 - `docs/api.md` —— 对外 JS API 与事件
 - `docs/assets.md` —— 素材管线与换皮肤手册
+
+## 授权
+
+代码 MIT（[LICENSE](./LICENSE)），角色形象与 `skins/` 下的全部美术素材 CC BY-NC 4.0（[LICENSE-ASSETS](./LICENSE-ASSETS)）。
+
+想商用角色形象需要单独授权；做自己的宠物请画自己的角色，代码随便用。
