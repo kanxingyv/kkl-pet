@@ -16,6 +16,37 @@ node scripts/sync-to-web.mjs   # 同步到 ../kkl-web/assets/pet/
 
 测试台地址后面加 `?pet-debug` 可以看到世界模型叠层（所有可站立表面、端口、当前路径）。
 
+## 三种接入方式
+
+| 方式 | 适用场景 | 怎么用 |
+| --- | --- | --- |
+| **站内版** | 自己的站点，CSP 可控 | `<script src="/assets/pet/pet.js" defer></script>` |
+| **浏览器扩展** | 任意站点，包括严格 CSP | 加载 `dist/extension`（开发者模式） |
+| **单文件植入** | 任意站点，一行 script | `<script src="https://kkl.ltd/assets/pet/pet.embed.js" defer></script>` |
+
+### 单文件植入的边界
+
+`pet.embed.js` 把 11 个动作的素材全部内联成 data URI（约 962KB），产物不依赖任何外部请求，拷到哪都能用。
+
+但它**挡不住 CSP**：
+
+- 站点 `script-src` 不允许这个来源 → 脚本根本不执行
+- 站点 `img-src` 不允许 `data:` → 素材加载失败
+
+判断方法：打开目标站点，F12 看响应头里有没有 `Content-Security-Policy`。没有这一行，单文件植入就能用。
+
+kkl.ltd 自己是 `script-src 'self'`，所以只能走站内版或扩展——这也是当初为什么要把样式做成 constructable stylesheet。
+
+### 单文件版的用法
+
+```html
+<script src="https://kkl.ltd/assets/pet/pet.embed.js" defer></script>
+```
+
+装好后按 `Alt + P` 开关。关闭状态存 `localStorage`，同一域名下不再出现。
+
+比站内版少两个能力：没有页脚入口（第三方站点没有你的页脚），不读取站点自己的皮肤配置。
+
 ## 目录
 
 ```

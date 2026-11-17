@@ -21,6 +21,12 @@ await rm(DEST, { recursive: true, force: true });
 await mkdir(DEST, { recursive: true });
 await cp(SRC, DEST, { recursive: true });
 
+// 单文件植入版一并同步，站点上就有公网地址可以直接 <script src>
+const EMBED = path.join(ROOT, "dist/embed/pet.embed.js");
+if (existsSync(EMBED)) {
+  await cp(EMBED, path.join(DEST, "pet.embed.js"));
+}
+
 const files = await readdir(DEST, { recursive: true });
 const total = files.filter((f) => f.includes(".")).length;
 console.log(`  dist/site → ${DEST}`);

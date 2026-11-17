@@ -72,6 +72,28 @@ async function buildExtension() {
   return `${line}  (${skins} skin${skins === 1 ? "" : "s"})`;
 }
 
+/** 单文件植入版：素材内联成 data URI，产物不依赖任何外部请求。 */
+async function buildEmbed() {
+  const outDir = path.join(root, "dist/embed");
+  await rm(outDir, { recursive: true, force: true });
+  await mkdir(outDir, { recursive: true });
+
+  await build({
+    ...base,
+    entryPoints: [path.join(root, "src/entry/embed.ts")],
+    outfile: path.join(outDir, "pet.embed.js"),
+    loader: { ".css": "text", ".json": "json", ".webp": "dataurl" },
+    minify: true,
+    define: {
+      __PET_VERSION__: JSON.stringify(pkg.version),
+      __DEV__: "false",
+    },
+  });
+
+  const { size } = await readFile(path.join(outDir, "pet.embed.js")).then((b) => ({ size: b.length }));
+  return `dist/embed/pet.embed.js  ${(size / 1024).toFixed(0)}KB  (素材已内联)`;
+}
+
 const t0 = Date.now();
 const results = [];
 
@@ -88,6 +110,9 @@ if (isDev) {
     results.push(await buildExtension());
   } else {
     results.push("dist/extension  跳过（src/entry/extension.ts 尚未创建）");
+  }
+  if (existsSync(path.join(root, "src/entry/embed.ts"))) {
+    results.push(await buildEmbed());
   }
 }
 
