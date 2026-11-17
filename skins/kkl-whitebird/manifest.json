@@ -42,16 +42,16 @@
   "clips": {
     "climb": {
       "sheet": "climb.webp",
-      "frames": 8,
-      "fps": 13,
+      "frames": 4,
+      "fps": 10,
       "loop": true,
       "view": "front",
       "mirror": true
     },
     "idle": {
       "sheet": "idle.webp",
-      "frames": 10,
-      "fps": 12,
+      "frames": 4,
+      "fps": 6,
       "loop": true,
       "view": "front",
       "mirror": false
@@ -66,7 +66,7 @@
     },
     "fall": {
       "sheet": "fall.webp",
-      "frames": 6,
+      "frames": 4,
       "fps": 14,
       "loop": true,
       "view": "front",
@@ -82,23 +82,23 @@
     },
     "sit": {
       "sheet": "sit.webp",
-      "frames": 6,
-      "fps": 8,
+      "frames": 4,
+      "fps": 6,
       "loop": true,
       "view": "front",
       "mirror": true
     },
     "sleep": {
       "sheet": "sleep.webp",
-      "frames": 6,
-      "fps": 6,
+      "frames": 4,
+      "fps": 4,
       "loop": true,
       "view": "front",
       "mirror": false
     },
     "wave": {
       "sheet": "wave.webp",
-      "frames": 8,
+      "frames": 4,
       "fps": 12,
       "loop": true,
       "view": "front",
