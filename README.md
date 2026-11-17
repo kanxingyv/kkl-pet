@@ -86,7 +86,7 @@ CSS 在构建期内联成字符串，运行时通过 `new CSSStyleSheet()` + `ad
 
 ## 文档
 
-- `docs/素材规格书.md` —— **要做分帧动画素材时的完整规格与 prompt 模板**
+- `docs/素材规格书.md` —— **素材作业清单：6 个动作、每张一段可直接复制的 prompt**
 - `docs/api.md` —— 对外 JS API 与事件
 - `docs/assets.md` —— 素材管线与换皮肤手册
 
