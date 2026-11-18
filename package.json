@@ -1,14 +1,30 @@
 {
   "name": "kkl-pet",
-  "private": true,
   "version": "0.1.0",
+  "description": "浏览器桌面宠物：丁小红白。一套 core，三个壳（Chrome MV3 扩展 / 站内版 / 单文件植入）。",
   "type": "module",
-  "description": "浏览器桌面宠物：丁小红白。一套 core，两个壳（Chrome MV3 扩展 + 站内版）。",
+  "license": "MIT",
+  "author": "kan",
+  "homepage": "https://kkl.ltd",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanxingyv/kkl-pet.git"
+  },
+  "keywords": [
+    "desktop-pet",
+    "browser-extension",
+    "manifest-v3",
+    "sprite-animation",
+    "typescript",
+    "dom",
+    "no-dependencies"
+  ],
   "scripts": {
     "build": "node build.mjs",
     "build:dev": "node build.mjs --dev",
     "typecheck": "tsc --noEmit",
-    "serve": "node tools/serve.mjs",
+    "serve": "node tools/serve-with-csp.mjs",
+    "serve:web": "node tools/serve-web.mjs",
     "petkit": "node tools/petkit/cli.mjs"
   },
   "devDependencies": {

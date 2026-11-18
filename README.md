@@ -1,20 +1,32 @@
 # kkl-pet
 
-浏览器桌面宠物「丁小红白」。一套 core，两个壳：**Chrome 扩展**（可装进任意网站）与**站内版**（嵌入 kkl.ltd）。
+让一只卡通白鸟住进网页。它会走动、沿元素边缘攀爬、坐在卡片上、探头看输入框，可以被拖走扔掉。
 
-它会在页面上走动、沿元素边缘攀爬、坐在卡片顶边、探头看输入框，可以被拖拽抛掷，也可以关掉。
 **所有位移都是连续的 walk / climb / fall，不存在瞬移。**
+
+![走路循环](docs/demo-walk.gif)
+
+![站在网页元素上](docs/demo-site.png)
+
+## 特性
+
+- **不瞬移** — 位置只能沿位移段连续变化，代码里没有 `setPosition(target)` 这类兜底；单帧位移超限会触发 `PET_E_TELEPORT` 断言
+- **不碰表单** — `peek` 只蹲在输入框边框上探头，绝不 focus、绝不写入，验收脚本里有断言
+- **不受宿主 CSP 限制** — 样式走 constructable stylesheet 进 shadow root，`style-src 'self'` 也拦不住
+- **零运行时依赖** — 站内版与扩展产物各 50KB，无框架无库
+- **11 个动作** — 7 个 AI 分帧动画 + 4 个程序化刚体变换
 
 ## 快速开始
 
 ```bash
 npm install
-npm run build          # 产物 → dist/site/pet.js + dist/extension/
+npm run build          # → dist/site + dist/extension + dist/embed
 npm run serve          # 带真实 CSP 的测试台 → http://127.0.0.1:5180/
-node scripts/sync-to-web.mjs   # 同步到 ../kkl-web/assets/pet/
 ```
 
-测试台地址后面加 `?pet-debug` 可以看到世界模型叠层（所有可站立表面、端口、当前路径）。
+测试台地址加 `?pet-debug` 能看到世界模型叠层：所有可站立表面、导航端口、当前路径。
+
+`node scripts/sync-to-web.mjs` 是作者自用的同步脚本（把产物拷进主站），外部使用不需要它。
 
 ## 三种接入方式
 

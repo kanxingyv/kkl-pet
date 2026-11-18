@@ -10,7 +10,20 @@ import { fileURLToPath } from "node:url";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(here, "..");
 const SRC = path.join(ROOT, "dist/site");
-const DEST = path.resolve(ROOT, "../kkl-web/assets/pet");
+const destArg = process.argv.indexOf("--dest");
+const DEST =
+  destArg >= 0
+    ? path.resolve(process.argv[destArg + 1])
+    : path.resolve(ROOT, "../kkl-web/assets/pet");
+const WEB_ROOT = path.dirname(path.dirname(DEST));
+
+// 这是作者自用的同步脚本：目标站点不在时给出明确提示，而不是静默创建一个空目录
+if (!existsSync(WEB_ROOT)) {
+  console.error(`目标站点不存在：${WEB_ROOT}`);
+  console.error("用法：node scripts/sync-to-web.mjs [--dest <目录>]");
+  console.error("如果你只是想本地跑起来，不需要这一步——直接 npm run serve 即可。");
+  process.exit(1);
+}
 
 if (!existsSync(SRC)) {
   console.error("dist/site 不存在，先跑 npm run build");
