@@ -4,9 +4,9 @@
 
 **所有位移都是连续的 walk / climb / fall，不存在瞬移。**
 
-![走路循环](docs/demo-walk.gif)
+![走路循环](https://cdn.jsdelivr.net/gh/kanxingyv/kkl-pet@master/docs/demo-walk.gif)
 
-![站在网页元素上](docs/demo-site.png)
+![站在网页元素上](https://cdn.jsdelivr.net/gh/kanxingyv/kkl-pet@master/docs/demo-site.png)
 
 ## 特性
 
